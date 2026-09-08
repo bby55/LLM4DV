@@ -1,0 +1,8 @@
+# Exact little-endian words from the repository's test_prog.bin.
+0x00a00293
+0x01400313
+0x006383b3
+0xfff28293
+0xfe029ce3
+0x0000006f
+0x0000006f

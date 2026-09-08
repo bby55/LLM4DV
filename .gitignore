@@ -1,0 +1,36 @@
+# Python caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Test/type caches
+.pytest_cache/
+.mypy_cache/
+.coverage
+coverage.xml
+
+# Simulator/build output
+obj_dir/
+obj_*/
+sim_build*/
+*.fst
+*.vcd
+*.out
+*.tmp
+trace_core_*.log
+
+# Local credentials and editor state
+.env
+.env.*
+!.env.example
+.vscode/
+.idea/
+
+# Large local experiment outputs
+outputs/
+coverage-runs/
+.toolchains/
+
+# Historical evidence kept locally, not uploaded
+archive/
+**/logs/
