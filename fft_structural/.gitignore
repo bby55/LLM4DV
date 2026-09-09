@@ -1,0 +1,9 @@
+outputs/
+work/
+work-*/
+*.cf
+*.gcda
+*.gcno
+*.gcov
+*.info
+*.o

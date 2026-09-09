@@ -91,3 +91,16 @@ python -m py_compile tools\ibex_full_rtl_coverage.py tests\test_ibex_full_rtl_co
 ## 依赖
 
 原始 Cocotb 流需要 Python 依赖、Cocotb 和 Verilator。完整 Ibex Windows 流默认使用 `D:\verilator-5.050` 和 `C:\msys64\ucrt64\bin\g++.exe`；如路径不同，请在构建脚本参数中调整。模型配置默认从项目根目录 `.env` 读取，也可通过 `LLM4DV_ENV_FILE` 指向其他文件；参考 `.env.example`，密钥文件不应提交到仓库。
+
+## FFT 结构覆盖率分支
+
+分支 `fft-structural-coverage` 在 `fft_structural/` 中保留上游 [fpga-fft](https://github.com/owocomm-0/fpga-fft) 快照，并提供独立的 GHDL/LCOV 结构覆盖率流。上游 RTL 和测试不改写，新增工具、命令和真实性门禁与本项目风格一致：
+
+```powershell
+python -m unittest discover -s fft_structural\tests -p "test_*.py"
+python fft_structural\tools\fft_structural_coverage.py `
+  --out-dir D:\coverage\llm4dv\fft-run `
+  --iterations 2 --cycles 2000
+```
+
+该流只报告 GHDL 实际产生的 Line/Branch LCOV 数据；Expression、Toggle 和 FSM 在没有专用适配器时明确标记为 `unavailable`。详见 [`fft_structural/README.md`](fft_structural/README.md)。

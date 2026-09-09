@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# usage: ./do_gen_fft INSTANCE_NAME
+
+# generates all deliverables for an fft core, each entity in a separate file
+# outputs to ../generated/INSTANCE_NAME
+
+NAME="$1"
+OUTDIR="../generated/$NAME"
+
+mkdir -p "$OUTDIR"
+./gen_fft.py fft "$NAME" "$OUTDIR"
+./gen_fft.py reorderer "$NAME" "$OUTDIR"
+./gen_fft.py wrapper "$NAME" "$OUTDIR"
+./gen_fft.py large "$NAME" "$OUTDIR"
+
