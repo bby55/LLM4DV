@@ -1,0 +1,503 @@
+{
+  "created_at": "2026-09-09T23:31:56",
+  "upstream_commit": "c64c89e",
+  "ghdl": "C:\\msys64\\ucrt64\\bin\\ghdl.exe",
+  "iterations": 5,
+  "cycles": 10000,
+  "attempts": 1,
+  "testbenches": [
+    "test_fft1024"
+  ],
+  "source_manifest": {
+    "files": 46,
+    "physical_lines": 5135,
+    "entries": [
+      {
+        "path": "upstream/barrel_shifter.vhd",
+        "physical_lines": 67,
+        "sha256": "ce34b980484c115161dcacd6e9b95e112b1de8a46479e0b305b3f7802f2369b5"
+      },
+      {
+        "path": "upstream/complex_multiply.vhd",
+        "physical_lines": 104,
+        "sha256": "1e594dd80d676066000aa8f375d85255d91a2cdbd40b53c56f543675bba6c4d8"
+      },
+      {
+        "path": "upstream/complex_multiply2.vhd",
+        "physical_lines": 68,
+        "sha256": "319456fff428ed2a2fa350c2fc8baebcdb4564c4eff55a3441ca8af1e738822e"
+      },
+      {
+        "path": "upstream/complex_multiply_large.vhd",
+        "physical_lines": 98,
+        "sha256": "0fefdecf84c0859eb88c00c29c94ec5fabe7efb47c69ab456b115545e3bde365"
+      },
+      {
+        "path": "upstream/complex_ram.vhd",
+        "physical_lines": 67,
+        "sha256": "c633368e58c16ad235ff90d5ea163bae2d00ded88de703cc3afd4e28b013c02a"
+      },
+      {
+        "path": "upstream/complex_ram_delay.vhd",
+        "physical_lines": 68,
+        "sha256": "11ed0fd301de900c4e327efc6523a4a30f24f4856b89851813aa13648c90d76e"
+      },
+      {
+        "path": "upstream/complex_ram_lut.vhd",
+        "physical_lines": 77,
+        "sha256": "4a2d4f6032b087071dfbb5d41ea427097dacee88a01affcc548d2d569a313ccf"
+      },
+      {
+        "path": "upstream/fft2_no_pipeline.vhd",
+        "physical_lines": 37,
+        "sha256": "d9a06fbff06f3b4fa7fb6408107d764a55875a7ae8d951dc3a25e47e9a02e5db"
+      },
+      {
+        "path": "upstream/fft2_serial.vhd",
+        "physical_lines": 49,
+        "sha256": "3709ba60a71b66591c3079febc6f898df0ac72d504fcc05bbe60bc2039223bdd"
+      },
+      {
+        "path": "upstream/fft2_serial2.vhd",
+        "physical_lines": 39,
+        "sha256": "a5181850e9e4b437dfbde6ddfd0dc5badc495bdc83e5bb6e9daf123483bfe1c1"
+      },
+      {
+        "path": "upstream/fft4.vhd",
+        "physical_lines": 38,
+        "sha256": "f32fd22f6941d5a081a3d0cd54bd0955132e5ec3eaa0b9a1f11946aef7574dee"
+      },
+      {
+        "path": "upstream/fft4_no_pipeline.vhd",
+        "physical_lines": 53,
+        "sha256": "e7bd2a824ea1421f496391e0037e0d96f02b6796f1cbd37672f08023ef1cecce"
+      },
+      {
+        "path": "upstream/fft4_serial3.vhd",
+        "physical_lines": 78,
+        "sha256": "21b98779dedd923bd991a3d794d84e4416d9f138af534656e1c0f16a5369aff5"
+      },
+      {
+        "path": "upstream/fft4_serial4.vhd",
+        "physical_lines": 109,
+        "sha256": "880048e4043e24a6895de830f8fa7582b34f43f2895f92733e375917fbb3d516"
+      },
+      {
+        "path": "upstream/fft4_serial4_bf.vhd",
+        "physical_lines": 40,
+        "sha256": "134585ea816f5ecf57346a9d2b81d80b752ff7e14cef02fffb7e81944cf4c160"
+      },
+      {
+        "path": "upstream/fft4_serial5.vhd",
+        "physical_lines": 107,
+        "sha256": "a4fb87b207ddb48b2e2fae5e7d527572c3344f91ea6d53c3874754a513478b30"
+      },
+      {
+        "path": "upstream/fft4_serial5_natural.vhd",
+        "physical_lines": 111,
+        "sha256": "54f83506a5a362d6a1a4c1320b0c73a6d852c0f1d18ba438110699fba5a121e9"
+      },
+      {
+        "path": "upstream/fft4_serial6.vhd",
+        "physical_lines": 161,
+        "sha256": "43b09c7fcdd4e08539af786c023a3ac6000f41e6986bc80085091bd88b871323"
+      },
+      {
+        "path": "upstream/fft4_serial7.vhd",
+        "physical_lines": 124,
+        "sha256": "01a8e08796e591761edc967b8ec057b83a5e4fe364ea9f216ece42818f4d991c"
+      },
+      {
+        "path": "upstream/fft4_serial8.vhd",
+        "physical_lines": 228,
+        "sha256": "ee0088d5e24e5364f34610139975dfe503d85cb47e8cdfe07cbe0debdee0dab0"
+      },
+      {
+        "path": "upstream/fft4_serial8_bf.vhd",
+        "physical_lines": 57,
+        "sha256": "4dab2d98e0a1ed6ed74e345d963f8445e67f885449e66a4b6ecb4427ef8b8883"
+      },
+      {
+        "path": "upstream/fft4_serial9.vhd",
+        "physical_lines": 204,
+        "sha256": "8b11035f5420c42d79d71514233cbdac8435dd7bdb02327100dbe51447a6a9b7"
+      },
+      {
+        "path": "upstream/fft4_serial9_bf.vhd",
+        "physical_lines": 132,
+        "sha256": "a77cb4c373b1df0be7749641479b8c42e43a80fcf885a16516109388695498fa"
+      },
+      {
+        "path": "upstream/fft_spdf_halfstage.vhd",
+        "physical_lines": 121,
+        "sha256": "ffccb02dacdda8b0cd422314de7be7107c23674c79f3aa23cd4b6cfcdcefb5d6"
+      },
+      {
+        "path": "upstream/fft_spdf_stage.vhd",
+        "physical_lines": 36,
+        "sha256": "e2f677ee977ef531edd8c02708286416aba7cadaf39be2f3303ff71d605c04d7"
+      },
+      {
+        "path": "upstream/fft_types.vhd",
+        "physical_lines": 353,
+        "sha256": "5512a43c881ba986702752d67cf523a5e562ceca83de260a4e6348a41c2b8e07"
+      },
+      {
+        "path": "upstream/multiply_add.vhd",
+        "physical_lines": 36,
+        "sha256": "77f09d74b6d5402bbc67b8118a81318f87ec2eb114e5864e4f0ec0b125bb9f6e"
+      },
+      {
+        "path": "upstream/reorder_buffer.vhd",
+        "physical_lines": 100,
+        "sha256": "c00738be9d5be0f401f9c07095a71304ecf434645dcdfb9fbe520fcaf54def9e"
+      },
+      {
+        "path": "upstream/spdf_butterfly.vhd",
+        "physical_lines": 29,
+        "sha256": "398098f849369f239ce207a1f3b600c352f252d3690604b1210e1e32c2c98746"
+      },
+      {
+        "path": "upstream/sr.vhd",
+        "physical_lines": 97,
+        "sha256": "4f58c0a26ecd9cf620f0da36ffe185733364965e97b7b3c84e4d168e77f546a7"
+      },
+      {
+        "path": "upstream/transposer.vhd",
+        "physical_lines": 84,
+        "sha256": "d1ed46ba8f7ecc2eaf7200021002000c792c3e16f01d5dd17d7109bd3d169555"
+      },
+      {
+        "path": "upstream/transposer4.vhd",
+        "physical_lines": 47,
+        "sha256": "4dc02bb50220225b6d1ea082be6b93178a832e0a73d0ecbee852a74d44a5c154"
+      },
+      {
+        "path": "upstream/transposer_addr_gen.vhd",
+        "physical_lines": 61,
+        "sha256": "802d88c08020bae173031cc889d31ddbd88cb4a8296d46dbd6bffc1005a279b2"
+      },
+      {
+        "path": "upstream/twiddle_addr_gen.vhd",
+        "physical_lines": 68,
+        "sha256": "25e9125a0ca192e75f6f3acad52fbe973353d98fdfd2b63c82966b59d6bd4a87"
+      },
+      {
+        "path": "upstream/twiddle_addr_gen_large.vhd",
+        "physical_lines": 54,
+        "sha256": "74670c4739479a3a3b0221323d33a5f55d7a8be0cb43c516a26b6b730ae1e90e"
+      },
+      {
+        "path": "upstream/twiddle_generator.vhd",
+        "physical_lines": 109,
+        "sha256": "580175d71fb20f4b20dc7068a23ec34aa688774767c91f7b7db42ed2b482c1c7"
+      },
+      {
+        "path": "upstream/twiddle_multiplier.vhd",
+        "physical_lines": 106,
+        "sha256": "526dcd7ccbaccc0c868a2a47280dac3e7c41e4ef66cd7b502e4c4d1adae9867b"
+      },
+      {
+        "path": "upstream/generated/fft1024_wide/fft1024_wide.vhd",
+        "physical_lines": 150,
+        "sha256": "d9f62a3a8d9d445ecd5d9e6ac1b20c98907ce42b8407df1dafe9033cb6b7ee02"
+      },
+      {
+        "path": "upstream/generated/fft1024_wide/fft1024_wide_sub16.vhd",
+        "physical_lines": 101,
+        "sha256": "e5f006c13a760a3ec547911de62bcd0f2b635427a5bc881dc02786872e25b349"
+      },
+      {
+        "path": "upstream/generated/fft1024_wide/fft1024_wide_sub16_2.vhd",
+        "physical_lines": 101,
+        "sha256": "eaa507776396a112b16510297f6892084822399fc0bc8634a23c0e87f7f8f8a2"
+      },
+      {
+        "path": "upstream/generated/fft1024_wide/fft1024_wide_sub64.vhd",
+        "physical_lines": 105,
+        "sha256": "44a178b29551be16d1cd36785adac5070034d6f165ae04fa68f5ac5811f22769"
+      },
+      {
+        "path": "upstream/generated/twiddle/twiddle_generator_16.vhd",
+        "physical_lines": 140,
+        "sha256": "fae53ff10bc193d9ca70738e688a00b955714dc3db782f61658355c08db2d703"
+      },
+      {
+        "path": "upstream/generated/twiddle/twiddle_generator_64.vhd",
+        "physical_lines": 428,
+        "sha256": "bd037eb89ae7a9432e6c8eaf2102575bb6d1a6148e6975dd915cc4545aa336ad"
+      },
+      {
+        "path": "upstream/generated/twiddle/twiddle_rom_1024.vhd",
+        "physical_lines": 421,
+        "sha256": "d65d0e9770cbbdf755bf235070735fe5ea5e402058c95a9b62cf7ac61b4a45b4"
+      },
+      {
+        "path": "upstream/generated/twiddle/twiddle_rom_64.vhd",
+        "physical_lines": 61,
+        "sha256": "c4b60df53b874d25695b9ba45d5e6dc3d433fe5d154502e91a28a577d503ce7b"
+      },
+      {
+        "path": "upstream/xilinx/dsp48e1_multadd.vhd",
+        "physical_lines": 211,
+        "sha256": "98b6d7bcf0c8abdb2a97019c029743c39547ae7379059a24637accd63c242719"
+      }
+    ]
+  },
+  "runs": [
+    {
+      "testbench": "test_fft1024",
+      "simulation_output_sha256": "a625e1705d9cb9dc0ef1b58091185b7567fb7188b0ce67e29c8f3243ebe23404",
+      "coverage_sha256": "90847e9c274fa2d92f99dc2f15a55ad437e7198ffcd9ae8fcfe145db08658155",
+      "metrics": {
+        "line": {
+          "covered": 288,
+          "total": 293,
+          "pct": 98.29
+        },
+        "branch": {
+          "covered": 0,
+          "total": 0,
+          "pct": null,
+          "status": "unavailable"
+        },
+        "expression": {
+          "covered": null,
+          "total": null,
+          "pct": null,
+          "status": "unavailable"
+        },
+        "toggle": {
+          "covered": null,
+          "total": null,
+          "pct": null,
+          "status": "unavailable"
+        },
+        "fsm_state": {
+          "covered": null,
+          "total": null,
+          "pct": null,
+          "status": "unavailable"
+        },
+        "fsm_transition": {
+          "covered": null,
+          "total": null,
+          "pct": null,
+          "status": "unavailable"
+        }
+      }
+    },
+    {
+      "testbench": "test_fft1024",
+      "simulation_output_sha256": "a625e1705d9cb9dc0ef1b58091185b7567fb7188b0ce67e29c8f3243ebe23404",
+      "coverage_sha256": "90847e9c274fa2d92f99dc2f15a55ad437e7198ffcd9ae8fcfe145db08658155",
+      "metrics": {
+        "line": {
+          "covered": 288,
+          "total": 293,
+          "pct": 98.29
+        },
+        "branch": {
+          "covered": 0,
+          "total": 0,
+          "pct": null,
+          "status": "unavailable"
+        },
+        "expression": {
+          "covered": null,
+          "total": null,
+          "pct": null,
+          "status": "unavailable"
+        },
+        "toggle": {
+          "covered": null,
+          "total": null,
+          "pct": null,
+          "status": "unavailable"
+        },
+        "fsm_state": {
+          "covered": null,
+          "total": null,
+          "pct": null,
+          "status": "unavailable"
+        },
+        "fsm_transition": {
+          "covered": null,
+          "total": null,
+          "pct": null,
+          "status": "unavailable"
+        }
+      }
+    },
+    {
+      "testbench": "test_fft1024",
+      "simulation_output_sha256": "a625e1705d9cb9dc0ef1b58091185b7567fb7188b0ce67e29c8f3243ebe23404",
+      "coverage_sha256": "90847e9c274fa2d92f99dc2f15a55ad437e7198ffcd9ae8fcfe145db08658155",
+      "metrics": {
+        "line": {
+          "covered": 288,
+          "total": 293,
+          "pct": 98.29
+        },
+        "branch": {
+          "covered": 0,
+          "total": 0,
+          "pct": null,
+          "status": "unavailable"
+        },
+        "expression": {
+          "covered": null,
+          "total": null,
+          "pct": null,
+          "status": "unavailable"
+        },
+        "toggle": {
+          "covered": null,
+          "total": null,
+          "pct": null,
+          "status": "unavailable"
+        },
+        "fsm_state": {
+          "covered": null,
+          "total": null,
+          "pct": null,
+          "status": "unavailable"
+        },
+        "fsm_transition": {
+          "covered": null,
+          "total": null,
+          "pct": null,
+          "status": "unavailable"
+        }
+      }
+    },
+    {
+      "testbench": "test_fft1024",
+      "simulation_output_sha256": "a625e1705d9cb9dc0ef1b58091185b7567fb7188b0ce67e29c8f3243ebe23404",
+      "coverage_sha256": "90847e9c274fa2d92f99dc2f15a55ad437e7198ffcd9ae8fcfe145db08658155",
+      "metrics": {
+        "line": {
+          "covered": 288,
+          "total": 293,
+          "pct": 98.29
+        },
+        "branch": {
+          "covered": 0,
+          "total": 0,
+          "pct": null,
+          "status": "unavailable"
+        },
+        "expression": {
+          "covered": null,
+          "total": null,
+          "pct": null,
+          "status": "unavailable"
+        },
+        "toggle": {
+          "covered": null,
+          "total": null,
+          "pct": null,
+          "status": "unavailable"
+        },
+        "fsm_state": {
+          "covered": null,
+          "total": null,
+          "pct": null,
+          "status": "unavailable"
+        },
+        "fsm_transition": {
+          "covered": null,
+          "total": null,
+          "pct": null,
+          "status": "unavailable"
+        }
+      }
+    },
+    {
+      "testbench": "test_fft1024",
+      "simulation_output_sha256": "a625e1705d9cb9dc0ef1b58091185b7567fb7188b0ce67e29c8f3243ebe23404",
+      "coverage_sha256": "90847e9c274fa2d92f99dc2f15a55ad437e7198ffcd9ae8fcfe145db08658155",
+      "metrics": {
+        "line": {
+          "covered": 288,
+          "total": 293,
+          "pct": 98.29
+        },
+        "branch": {
+          "covered": 0,
+          "total": 0,
+          "pct": null,
+          "status": "unavailable"
+        },
+        "expression": {
+          "covered": null,
+          "total": null,
+          "pct": null,
+          "status": "unavailable"
+        },
+        "toggle": {
+          "covered": null,
+          "total": null,
+          "pct": null,
+          "status": "unavailable"
+        },
+        "fsm_state": {
+          "covered": null,
+          "total": null,
+          "pct": null,
+          "status": "unavailable"
+        },
+        "fsm_transition": {
+          "covered": null,
+          "total": null,
+          "pct": null,
+          "status": "unavailable"
+        }
+      }
+    }
+  ],
+  "final_metrics": {
+    "line": {
+      "covered": 288,
+      "total": 293,
+      "pct": 98.29
+    },
+    "branch": {
+      "covered": 0,
+      "total": 0,
+      "pct": null,
+      "status": "unavailable"
+    },
+    "expression": {
+      "covered": null,
+      "total": null,
+      "pct": null,
+      "status": "unavailable"
+    },
+    "toggle": {
+      "covered": null,
+      "total": null,
+      "pct": null,
+      "status": "unavailable"
+    },
+    "fsm_state": {
+      "covered": null,
+      "total": null,
+      "pct": null,
+      "status": "unavailable"
+    },
+    "fsm_transition": {
+      "covered": null,
+      "total": null,
+      "pct": null,
+      "status": "unavailable"
+    }
+  },
+  "validity_gates": {
+    "simulations_passed": true,
+    "native_coverage_nonempty": true,
+    "deterministic_replay": true,
+    "source_manifest_saved": true
+  },
+  "coverage_valid": true
+}
