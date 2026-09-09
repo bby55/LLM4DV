@@ -100,7 +100,7 @@ python -m py_compile tools\ibex_full_rtl_coverage.py tests\test_ibex_full_rtl_co
 python -m unittest discover -s fft_structural\tests -p "test_*.py"
 python fft_structural\tools\fft_structural_coverage.py `
   --out-dir D:\coverage\llm4dv\fft-run `
-  --iterations 2 --cycles 2000
+  --iterations 5 --cycles 10000
 ```
 
-该流只报告 GHDL 实际产生的 Line/Branch LCOV 数据；Expression、Toggle 和 FSM 在没有专用适配器时明确标记为 `unavailable`。详见 [`fft_structural/README.md`](fft_structural/README.md)。
+默认目标是 1024 点 `test_fft1024`；该流只报告 GHDL 实际产生的 Line/Branch LCOV 数据，Expression、Toggle 和 FSM 在没有专用适配器时明确标记为 `unavailable`。详见 [`fft_structural/README.md`](fft_structural/README.md)。

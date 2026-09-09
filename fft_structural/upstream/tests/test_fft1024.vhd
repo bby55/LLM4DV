@@ -53,8 +53,16 @@ begin
 		for I in 0 to N+delay-1 loop
 			i2 := I/N;
 			i1 := I rem N;
-			o2 := (I-delay)/N;
-			o1 := (I-delay) rem N;
+			-- Avoid converting a negative pre-delay index to unsigned.  The
+			-- original upstream testbench evaluated this before its I>=delay
+			-- guard, causing a simulator bound-check failure at time zero.
+			if I >= delay then
+				o2 := (I-delay)/N;
+				o1 := (I-delay) rem N;
+			else
+				o2 := 0;
+				o1 := 0;
+			end if;
 			
 			phase <= to_unsigned(i1, O);
 			

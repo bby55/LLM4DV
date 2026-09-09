@@ -1,0 +1,61 @@
+library ieee;
+library work;
+use ieee.numeric_std.all;
+use ieee.std_logic_1164.all;
+
+entity twiddleRom64 is
+  generic(twBits: integer := 17);
+  port(clk: in std_logic; romAddr: in unsigned(3-1 downto 0); romData: out std_logic_vector((twBits-1)*2-1 downto 0));
+end entity;
+architecture a of twiddleRom64 is
+  constant romDepth: integer := 2**3;
+  constant romWidth: integer := (twBits-1)*2;
+  type ram1t is array(0 to romDepth-1) of std_logic_vector(romWidth-1 downto 0);
+  signal rom: ram1t;
+  signal addr1: unsigned(3-1 downto 0);
+  signal data0, data1: std_logic_vector(romWidth-1 downto 0);
+begin
+  addr1 <= romAddr when rising_edge(clk);
+  data0 <= rom(to_integer(addr1));
+  data1 <= data0 when rising_edge(clk);
+  romData <= data1;
+g12:
+	if twBits = 12 generate
+		rom <= (
+			"0001100100111111110101",
+			"0011000111111111011000",
+			"0100101001011110100111",
+			"0110000111111101100011",
+			"0111100010111100001101",
+			"1000111000111010100110",
+			"1010001001111000101110",
+			"1011010011110110100111"
+		);
+	end generate;
+g17:
+	if twBits = 17 generate
+		rom <= (
+			"00011001000110001111111011000011",
+			"00110001111100011111101100010100",
+			"01001010010100001111010011111001",
+			"01100001111101111110110010000010",
+			"01111000101011011110000111000101",
+			"10001110001110011101010011011010",
+			"10100010011001111100010111100011",
+			"10110101000001001011010100000100"
+		);
+	end generate;
+g24:
+	if twBits = 24 generate
+		rom <= (
+			"0001100100010111101001111111110110001000110110",
+			"0011000111110001011100011111011000101001011110",
+			"0100101001010000000110011110100111110100000100",
+			"0110000111110111100010111101100100000110101110",
+			"0111100010101101011101011100001110001011001011",
+			"1000111000111001110110011010100110110110011000",
+			"1010001001100111100110011000101111001000000001",
+			"1011010100000100111100110110101000001001111001"
+		);
+	end generate;
+end a;

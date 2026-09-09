@@ -21,11 +21,11 @@ fft_structural/
 python -m unittest discover -s fft_structural/tests -p "test_*.py"
 python fft_structural/tools/fft_structural_coverage.py `
   --out-dir D:\coverage\llm4dv\fft-run `
-  --iterations 2 `
-  --cycles 2000
+  --iterations 5 `
+  --cycles 10000
 ```
 
-当前环境若没有 GHDL，第二条命令会明确报错并且不会生成伪造覆盖率；先安装 GHDL，或用 `--manifest-only` 只检查源码清单。详细参数见 [`docs/COMMANDS.md`](docs/COMMANDS.md)，真实性规则见 [`docs/COVERAGE_WORKFLOW.md`](docs/COVERAGE_WORKFLOW.md)。
+默认目标是上游 `test_fft1024` 的 1024 点宽数据核心，并自动纳入 `generated/fft1024_wide` 以及所需 twiddle ROM。当前环境若没有 GHDL，第二条命令会明确报错并且不会生成伪造覆盖率；先安装 GHDL，或用 `--manifest-only` 只检查源码清单。详细参数见 [`docs/COMMANDS.md`](docs/COMMANDS.md)，真实性规则见 [`docs/COVERAGE_WORKFLOW.md`](docs/COVERAGE_WORKFLOW.md)。
 
 ## 许可
 

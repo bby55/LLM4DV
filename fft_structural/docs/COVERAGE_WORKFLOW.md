@@ -10,4 +10,6 @@
 
 任一门禁失败时，`coverage_valid` 为 `false` 或程序直接失败。模型响应、测试平台数量、静态 `if/case` 计数和旧报告都不能充当覆盖率数据。
 
+Windows/MSYS2 必须使用带 mcode 后端的 GHDL；LLVM 后端可以仿真，但不会生成本工作流所需的 `coverage-*.json`。例如：`pacman -S mingw-w64-ucrt-x86_64-ghdl-mcode`。
+
 当前实现只声明 GHDL 实际能提供的 Line/Branch。Expression、Toggle 和 FSM 的分母没有可靠来源，因此报告为 `unavailable`；后续接入专用 VHDL 覆盖率工具时应新增适配器和独立测试，不能复用 Line/Branch 数字。

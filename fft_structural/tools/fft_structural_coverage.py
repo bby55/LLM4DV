@@ -23,9 +23,9 @@ ROOT = Path(__file__).resolve().parents[1]
 UPSTREAM = ROOT / "upstream"
 DEFAULT_OUTPUT_ROOT = Path(os.environ.get("LLM4DV_OUTPUT_ROOT", str(ROOT.parent.parent / "outputs")))
 
-# These testbenches are self-contained upstream tests with a finite stimulus
-# followed by ``wait``.  They exercise distinct butterfly and serial paths.
-DEFAULT_TESTBENCHES = ("test_fft4", "test_fft4_serial", "test_fft16_serial")
+# The default campaign targets the upstream 1024-point wide generated core.
+# Smaller butterfly tests remain available through repeated --testbench flags.
+DEFAULT_TESTBENCHES = ("test_fft1024",)
 
 
 def sha256(path: Path) -> str:
@@ -58,9 +58,28 @@ def run(command: Sequence[str], cwd: Path, commands: List[dict]) -> subprocess.C
 
 
 def discover_rtl(include_generated: bool, include_axi: bool) -> List[Path]:
-    files = sorted(UPSTREAM.glob("*.vhd"))
+    # Keep the reusable root RTL, excluding optional 1M/large generator units
+    # whose generated dependencies are outside the 1024-point profile.
+    excluded_root = {"twiddle_generator_1m.vhd", "twiddle_generator_large.vhd"}
+    files = sorted(path for path in UPSTREAM.glob("*.vhd") if path.name not in excluded_root)
     if include_generated:
-        files.extend(sorted((UPSTREAM / "generated").rglob("*.vhd")))
+        generated = UPSTREAM / "generated" / "fft1024_wide"
+        # The repository contains several alternative generated wrappers which
+        # redeclare entities.  Compile the core profile used by test_fft1024.
+        files.extend(
+            generated / name
+            for name in (
+                "fft1024_wide.vhd",
+                "fft1024_wide_sub16.vhd",
+                "fft1024_wide_sub16_2.vhd",
+                "fft1024_wide_sub64.vhd",
+            )
+        )
+        files.extend(sorted((UPSTREAM / "generated" / "twiddle").glob("*.vhd")))
+        # The generated wide core instantiates the upstream behavioral DSP
+        # model.  It is synthesizable-independent RTL and part of this DUT
+        # profile, so include it in the manifest and coverage denominator.
+        files.append(UPSTREAM / "xilinx" / "dsp48e1_multadd.vhd")
     if include_axi:
         # Keep axi-util's reusable RTL only; its nested tests/synthtest units
         # are testbenches and must not enter the DUT coverage denominator.
@@ -131,6 +150,8 @@ def metrics(points: Dict[str, Dict[Tuple, int]]) -> dict:
             "total": total,
             "pct": round(covered * 100.0 / total, 2) if total else None,
         }
+        if not total:
+            result[kind]["status"] = "unavailable"
     for kind in ("expression", "toggle", "fsm_state", "fsm_transition"):
         result[kind] = {"covered": None, "total": None, "pct": None, "status": "unavailable"}
     return result
@@ -166,7 +187,10 @@ def analyze_all(ghdl: str, workdir: Path, sources: List[Path], cwd: Path, comman
         progress = False
         next_pending = []
         for source in pending:
-            process = run([ghdl, "-a", "--std=08", "--workdir=" + str(workdir), str(source)], cwd, commands)
+            # Coverage instrumentation is an analysis-time option for the
+            # packaged GHDL mcode backend; the generated executable then runs
+            # with ordinary simulation options.
+            process = run([ghdl, "-a", "--std=08", "--coverage", "--workdir=" + str(workdir), str(source)], cwd, commands)
             if process.returncode == 0:
                 progress = True
                 failures.pop(source, None)
@@ -196,14 +220,17 @@ def run_testbench(
     if elaborate.returncode:
         raise RuntimeError("GHDL elaboration failed for %s" % testbench)
     simulate = run(
-        [ghdl, "-r", "--std=08", "--workdir=" + str(workdir), "--coverage", "--stop-time=" + stop_time, testbench],
+        [ghdl, "-r", "--std=08", "--workdir=" + str(workdir), "--coverage", testbench, "--stop-time=" + stop_time],
         run_dir,
         commands,
     )
     (run_dir / "simulation.log").write_text(simulate.stdout, encoding="utf-8")
     if simulate.returncode:
         raise RuntimeError("GHDL simulation failed for %s" % testbench)
-    coverage = run([ghdl, "coverage", "--format=lcov"], run_dir, commands)
+    coverage_files = sorted(run_dir.glob("coverage-*.json"))
+    if not coverage_files:
+        raise RuntimeError("GHDL simulation produced no coverage-*.json file for %s" % testbench)
+    coverage = run([ghdl, "coverage", "--format=lcov", *coverage_files], run_dir, commands)
     (run_dir / "coverage.info").write_text(coverage.stdout, encoding="utf-8")
     if coverage.returncode:
         raise RuntimeError("GHDL coverage extraction failed for %s" % testbench)
@@ -240,7 +267,7 @@ def write_report(path: Path, summary: dict) -> None:
     ]
     for kind in ("line", "branch", "expression", "toggle", "fsm_state", "fsm_transition"):
         item = final[kind]
-        if item["status"] == "unavailable":
+        if item.get("status") == "unavailable":
             lines.append("| %s | unavailable | unavailable | unavailable |" % kind)
         else:
             lines.append("| %s | %s | %s | %s%% |" % (kind, item["covered"], item["total"], item["pct"]))
@@ -266,7 +293,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--attempts", type=int, default=1, help="保留 CLI 兼容性；确定性 VHDL 流不调用模型")
     parser.add_argument("--ghdl", help="GHDL 可执行文件路径；默认读取 GHDL 环境变量或 PATH")
     parser.add_argument("--testbench", action="append", dest="testbenches", help="测试平台实体名，可重复指定")
-    parser.add_argument("--include-generated", action="store_true", help="把 generated/ 下的 VHDL 纳入 RTL 清单")
+    parser.add_argument("--include-generated", action="store_true", default=True, help="把 1024 点 generated core 纳入 RTL 清单（默认开启）")
+    parser.add_argument("--no-generated", dest="include_generated", action="store_false", help="不纳入 generated core")
     parser.add_argument("--include-axi", action="store_true", help="把 axi-util/ 下的 VHDL 纳入 RTL 清单")
     parser.add_argument("--stop-time", default=None, help="GHDL stop-time，默认使用 cycles ns")
     parser.add_argument("--manifest-only", action="store_true", help="只生成源码清单，不需要 GHDL")
